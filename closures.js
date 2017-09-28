@@ -14,12 +14,12 @@ function outer() {
   closure over the name variable. Invoke outer saving the return value into
   another variable called 'inner'. */
   
-  // Code Here
-  
   //Once you do that, invoke inner.
   
   //Code Here
   
+  var inner = outer();
+  inner();
   
   
   
@@ -50,8 +50,11 @@ function outer() {
   (HINT: You will need to pass in arguments to both function invocations)
   */
   
-    //Code Here
-  
+    // Code Here
+
+    var callJake = callFriend('Jake')
+    callJake('435-555-9248')
+    
   
   
   
@@ -68,16 +71,16 @@ function outer() {
   /* Write a function called makeCounter that makes the following code work
   properly. */
   
-  //Code Here
+  function makeCounter(){
+    var num = 0;
+    return function addCount(){
+    return ++num
+    }
+}
   
-  //Uncomment this once you make your function
-  //   var count = makeCounter();
-  //   count(); // 1
-  //   count(); // 2
-  //   count(); // 3
-  //   count(); // 4
-  
-  
+var count = makeCounter()
+count(); //1
+count(); //2
   
   
   
@@ -101,26 +104,26 @@ function outer() {
   */
   
   function counterFactory(value) {
-  
-    // Code here.
-  
-  
+    
     return {
-
+      inc: function(){
+        return ++value
+        
+      },
+      
+      dec: function(){
+        return --value
+        
+      }
     }
   }
   
-  
-  counter = counterFactory(10);
-  // counter.inc() // 11
-  // counter.inc() // 12
-  // counter.inc() // 13
-  // counter.dec() // 12
-  
-  
-  
-  
-  
+  var counter = counterFactory(10)
+  counter.inc()
+  counter.inc()
+  counter.inc()
+  counter.dec()
+
   
   
   
@@ -135,23 +138,20 @@ function outer() {
   will return the welcome text with the firstname and lastname. The final message should
   say "You're doing awesome, keep it up firstname lastname." 
   (Hint: don't forget to have a space between the firstname and lastname and a period
-  at the end of the sentence.)  */
+  // at the end of the sentence.)  */
   
   function motivation(firstname, lastname) {
-  
-    var welcomeText = 'You\'re doing awesome, keep it up ';
-  
-    // code message function here.
-  
-  
-    //Uncommment this to return the value of your message function
-    //return message;
-  
-  }
-  
-  var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
-  
-  
+    
+      var welcomeText = 'You\'re doing awesome, keep it up ';
+      
+      return function message(){
+        return `${welcomeText}${firstname} ${lastname}.`
+      }
+      return message;
+    }
+
+    var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
+    greeting();
   
   
   
@@ -237,3 +237,4 @@ function outer() {
   }
   timeOutCounter();
   
+  //remember what i is. use a closure. outer function needs parameters for inner function
