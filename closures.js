@@ -183,7 +183,9 @@ count(); //2
     // Anything that is being returned is made public and can be invoked from
     // outside our lexical scope
     return {
-      // Code here.
+      publicMethod: function(){
+        return privateMethod();
+      }
     };
   
   })();
@@ -193,18 +195,20 @@ count(); //2
   /******************************************************************************\
    #PROBLEM-07
    \******************************************************************************/
-
-  /****** INSTRUCTIONS PROBLEM 7 ******/
-  /* Here we have a function named secretNumber that has a secret number. Inside
-  the return object, create two methods called addToSecret and takeAwayFromSecret. addToSecret should have a parameter that is added to the secret number returning the updated secret number. takeAwayFromSecret should have a parameter that takes away from the secret number returning the updated secret number. */
-
-  function secretNumber() {
+   function secretNumber() {
     var secret = 143;
 
     return {
-      // Code here
+      addToSecret: function(addSecret){
+        return secret += addSecret
+      },
+      
+      takeAwayFromSecret: function(minusSecret){
+        return secret -= minusSecret
+      }
     }
   }
+  
   
   
   
@@ -228,13 +232,16 @@ count(); //2
    Fix the code below to log the desired output.
    */
   
-  function timeOutCounter() {
+  function timeOutCounter(i) {
     for (var i = 0; i <= 5; i++) {
+      let j = i
       setTimeout(function() {
-          console.log(i)
+          console.log(j)
       }, i * 1000)
     }
   }
   timeOutCounter();
   
   //remember what i is. use a closure. outer function needs parameters for inner function
+
+  //setTimeout(function(){ alert("Hello"); }, 3000);
